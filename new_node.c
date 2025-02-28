@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   new_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 20:34:34 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/02/27 21:50:36 by gel-mejd         ###   ########.fr       */
+/*   Created: 2025/02/27 20:20:14 by gel-mejd          #+#    #+#             */
+/*   Updated: 2025/02/27 21:43:01 by gel-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+t_node  *new_node(int num)
+{
+    t_node *node;
 
-typedef struct s_node {
-    int num;
-    int index;
-    struct s_node *next;
-}t_node;
-
-char **ft_split(char *str);
-int ft_atoi(char *str);
-
-#endif
+    node = malloc(sizeof(t_node));
+    if (!node)
+        return (NULL);
+    node->num = num;
+    node->next = NULL;
+    return (node);
+}

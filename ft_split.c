@@ -6,7 +6,7 @@
 /*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 22:02:40 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/02/26 19:25:47 by gel-mejd         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:12:21 by gel-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int count_word(char *str)
         counter++;
     }
     return (counter);
-}                               // "     k"
+}
 char **ft_split(char *str)
 {
     char **dst;
@@ -63,34 +63,39 @@ char **ft_split(char *str)
     int j;
 
     if (*str == '\0')
-        return (NULL);
-    // len = ft_strlen()
+        return NULL;
     cw = count_word(str);
-    dst = malloc(cw * sizeof(char *) + 1);
+    dst = malloc((cw + 1) * sizeof(char *));
+    if (!dst) 
+        return NULL;
     i = 0;
-    while (i < cw)
-    {
-        j = 0;
-        while (str[j] && str[j] != ' ')
-        {
-           len++;
-            j++;    
-        }
+    j = 0;
+    while (i < cw) {
+        while (str[j] == ' ')
+            j++;
+        len = 0;
+        while (str[j + len] && str[j + len] != ' ')
+            len++;
         dst[i] = malloc(len + 1);
-        j = 0;
-        while (dst[i])
-        {
-            *dst[i] = str[j++];
-            (*dst)++;
+        int c = 0;
+        while (c < len) {
+            dst[i][c] = str[j + c];
+            c++;
         }
+        dst[i][c] = '\0';  
+        j += len;  
+        i++;
     }
-    return (dst);
+    dst[i] = NULL; 
+    return dst;
 }
-int main()
-{
-    char *str = "ab cd fr de";
-    char **res;
-    res = ft_split(str);
-    printf("%s\n", *res);
-    return (0);
-}
+
+// int main()
+// {
+//     char *str = "ab  cd cv dgdf dfgdf ";
+//     char **res;
+//     res = ft_split(str);
+//     while(*res)
+//         printf("%s-----> \n", *res++);
+//     return (0);
+// }
