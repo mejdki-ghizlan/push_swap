@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ms3ouda <ms3ouda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 20:08:08 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/02/15 20:25:13 by gel-mejd         ###   ########.fr       */
+/*   Updated: 2025/03/01 06:43:59 by ms3ouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int check_numbers(char *str)
     i = 0;
     while (str[i])
     {
-        if (str[i] >= 0 && str[i] <= 9)
-            return (1);
-        i++;
+   
     }
     return (0);
 }

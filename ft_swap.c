@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ms3ouda <ms3ouda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 20:25:32 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/02/24 22:10:47 by gel-mejd         ###   ########.fr       */
+/*   Created: 2025/03/01 06:44:03 by ms3ouda           #+#    #+#             */
+/*   Updated: 2025/03/01 07:14:19 by ms3ouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void swap(t_node* stack_a)
-// {
-//        t_node* stack_b;
+void ft_swap(t_node *stack_a)
+{
+    t_node *head_a;
+    t_node *tmp;
 
-       
-// }
+    head_a = stack_a;
+    tmp = head_a;
+
+}

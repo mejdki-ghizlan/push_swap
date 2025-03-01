@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ms3ouda <ms3ouda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 20:34:34 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/03/01 05:24:11 by ms3ouda          ###   ########.fr       */
+/*   Created: 2025/03/01 07:08:13 by ms3ouda           #+#    #+#             */
+/*   Updated: 2025/03/01 07:08:32 by ms3ouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+void ft_swap(t_node *stack_a, t_node *stack_b)
+{
+    t_node *head_a;
+    t_node *head_b;
 
-typedef struct s_node {
-    int num;
-    int index;
-    struct s_node *next;
-}t_node;
-
-char **ft_split(char *str);
-int ft_atoi(char *str);
-t_node  *new_node(int num);
-void add_back(t_node **lst, t_node *new);
-
-#endif
+    head_a = stack_a;
+    head_b = stack_b;
+    stack_a->next = stack_b;
+    head_a->next = stack_a->next;
+    head_b->next = stack_a;
+}

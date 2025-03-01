@@ -3,40 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ms3ouda <ms3ouda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 22:02:40 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/02/27 18:12:21 by gel-mejd         ###   ########.fr       */
+/*   Updated: 2025/03/01 05:58:13 by ms3ouda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_strlen(char *str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
-
-char *ft_strdup(char *str)
-{
-    int i;
-    char *dst;
-
-    dst = malloc(ft_strlen(str) + 1);
-    i = 0;
-    while (str[i])
-    {
-        *dst = str[i];
-        dst++;
-        i++;
-    }
-    return (dst);
-}
 int count_word(char *str)
 {
     int counter;
@@ -54,6 +29,7 @@ int count_word(char *str)
     }
     return (counter);
 }
+
 char **ft_split(char *str)
 {
     char **dst;
