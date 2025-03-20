@@ -3,23 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ms3ouda <ms3ouda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 07:08:13 by ms3ouda           #+#    #+#             */
-/*   Updated: 2025/03/01 07:08:32 by ms3ouda          ###   ########.fr       */
+/*   Updated: 2025/03/16 23:58:01 by gel-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_swap(t_node *stack_a, t_node *stack_b)
+void	ft_push(t_node **src, t_node **target)
 {
-    t_node *head_a;
-    t_node *head_b;
+	t_node	*new_head;
+	t_node	*tmp;
 
-    head_a = stack_a;
-    head_b = stack_b;
-    stack_a->next = stack_b;
-    head_a->next = stack_a->next;
-    head_b->next = stack_a;
+	if (!*src)
+		return ;
+	tmp = (*src);
+	new_head = (*src)->next;
+	*src = new_head;
+	tmp->next = *target;
+	(*target) = tmp;
+}
+
+void	ft_pa(t_node **stack_a, t_node **stack_b)
+{
+	ft_push(stack_b, stack_a);
+	write(1, "pa\n", 3);
+}
+
+void	ft_pb(t_node **stack_a, t_node **stack_b)
+{
+	ft_push(stack_a, stack_b);
+	write(1, "pb\n", 3);
 }
