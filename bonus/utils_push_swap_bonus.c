@@ -12,9 +12,9 @@
 
 #include "push_swap_bonus.h"
 
-int	count_word(char *str)
+int count_word(char *str)
 {
-	int	counter;
+	int counter;
 
 	counter = 0;
 	while (*str != '\0')
@@ -22,7 +22,7 @@ int	count_word(char *str)
 		while (*str && *str == ' ')
 			str++;
 		if (*str == '\0')
-			break ;
+			break;
 		while (*str && *str != ' ')
 			str++;
 		counter++;
@@ -30,13 +30,13 @@ int	count_word(char *str)
 	return (counter);
 }
 
-void	helper_split(char **dst, char *str, int i)
+void helper_split(char **dst, char *str, int i, int *k)
 {
-	int	len;
-	int	j;
-	int	c;
+	int len;
+	int j;
+	int c;
 
-	j = 0;
+	j = *k;
 	while (str[j] == ' ')
 		j++;
 	len = 0;
@@ -51,13 +51,15 @@ void	helper_split(char **dst, char *str, int i)
 	}
 	dst[i][c] = '\0';
 	j += len;
+	*k = j;
 }
 
-char	**ft_split(char *str)
+char **ft_split(char *str)
 {
-	char	**dst;
-	int		cw;
-	int		i;
+	char **dst;
+	int cw;
+	int i;
+	int j;
 
 	if (!str || *str == '\0')
 		return (NULL);
@@ -66,9 +68,10 @@ char	**ft_split(char *str)
 	if (!dst)
 		return (NULL);
 	i = 0;
+	j = 0;
 	while (i < cw)
 	{
-		helper_split(dst, str, i);
+		helper_split(dst, str, i, &j);
 		i++;
 	}
 	dst[i] = NULL;
@@ -86,19 +89,21 @@ int ft_strcmp(char *s1, char *s2)
 			i++;
 		else
 			return (0);
-	}	
-	return (1);
-}
-
-void ft_free(char **str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
 	}
-	free(str);
+	if (!s1[i] && !s2[i])
+		return (1);
+	return (0);
 }
+
+// void ft_free(char **str)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (str[i])
+// 	{
+// 		free(str[i]);
+// 		i++;
+// 	}
+// 	free(str);
+// }

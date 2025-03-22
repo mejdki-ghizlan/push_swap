@@ -41,7 +41,7 @@ char	*ft_get_line(char *buffer)
 	if (!line)
 		return (NULL);
 	i = ft_strcpy(line, buffer);
-	line[i] = '\0';
+	line[i - 1] = '\0';
 	if (i == 0)
 	{
 		free(line);
@@ -63,7 +63,7 @@ char	*next_line(char *buffer)
 		return (free(buffer), buffer = NULL, NULL);
 	if (buffer[i] == '\n')
 		i++;
-	next = malloc(ft_strlen(buffer) - i + 1);
+	next = malloc(ft_strlen(buffer) - i + 1);//
 	if (!next)
 		return (free(buffer), buffer = NULL, NULL);
 	j = 0;

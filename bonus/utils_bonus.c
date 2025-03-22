@@ -14,7 +14,7 @@
 
 int	ft_atoi(char *str, int *check)
 {
-	int	i;
+	int		i;
 	long	s;
 	long	r;
 
@@ -66,11 +66,9 @@ void	is_sorted(t_node **stack)
 {
 	t_node	*tmp;
 	int		flag;
-	t_node *head;
 
 	flag = 0;
 	tmp = *stack;
-	head = tmp;
 	while (tmp)
 	{
 		if (tmp->next && tmp->num > tmp->next->num)
@@ -81,19 +79,22 @@ void	is_sorted(t_node **stack)
 		tmp = tmp->next;
 	}
 	if (flag == 0)
-		error();
+	{
+		ft_free_stack(stack);
+		exit(0);
+	}	
 }
 
-void ft_free_stack(t_node **stack)
-{
-	t_node *nxt;
+// void ft_free_stack(t_node **stack)
+// {
+// 	t_node *nxt;
 	
-	if (!stack || !*stack)
-		return ;
-	while(*stack)
-	{
-		nxt = (*stack)->next;
-		free(*stack);
-		*stack = nxt;
-	}
-}
+// 	if (!stack || !*stack)
+// 		return ;
+// 	while(*stack)
+// 	{
+// 		nxt = (*stack)->next;
+// 		free(*stack);
+// 		*stack = nxt;
+// 	}
+// }

@@ -88,11 +88,10 @@ int	is_valid(char **str, t_node **stack)
 	int		check;
 	t_node	*node;
 
-	check = 0;
 	i = 0;
+	check = 0;
 	if (!check_numbers(str))
 		return(0);
-
 	while (str[i])
 	{
 		num = ft_atoi(str[i], &check);

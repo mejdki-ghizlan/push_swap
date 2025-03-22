@@ -12,6 +12,15 @@
 
 #include "push_swap_bonus.h"
 
+void custom_exit(char *input, t_node **stack_a, t_node **stack_b)
+{
+	free(input);
+	ft_free_stack(stack_a);
+	ft_free_stack(stack_b);
+	error();
+}
+
+
 void read_instractions(char *input, t_node **stack_a, t_node **stack_b)
 {
 	if (ft_strcmp(input, "sa"))
@@ -37,7 +46,7 @@ void read_instractions(char *input, t_node **stack_a, t_node **stack_b)
 	else if (ft_strcmp(input, "rrr"))
 		rrr_bonus(stack_a, stack_b);
 	else
-		error();
+		custom_exit(input, stack_a, stack_b);
 }
 
 void is_OK(t_node **stack_a, t_node **stack_b)
@@ -66,12 +75,16 @@ void checker(t_node **stack_a, t_node **stack_b)
 {
 	char *input;
 	
-	input = get_next_line(1);
+	input = get_next_line(0);
+	// printf("%i \n", ft_strlen(input));
 	while (input)
 	{
 		read_instractions(input, stack_a, stack_b);
-		input = get_next_line(1);	
-	}	
+		free(input);
+		input = get_next_line(0);
+		printf("%p\n",input);
+	}
+	free(input);
 	is_OK(stack_a, stack_b);
 }
 
@@ -90,14 +103,17 @@ int	main(int ac, char **av)
 		while (av[k])
 		{
 			buff = ft_split(av[k]);
-			if (!buff || !*buff)
-				error();
-			is_valid(buff, &stack_a);
+			if (!buff || !*buff || !is_valid(buff, &stack_a))
+			{
+				ft_free_stack(&stack_a);
+				free_exit(&buff);
+			}
 			k++;
 			ft_free(buff);
 		}
-		is_sorted(stack_a);
+		is_sorted(&stack_a);
 		checker(&stack_a, &stack_b);
 	}
-	ft_free_stack(stack_a);
+	ft_free_stack(&stack_a);
+	ft_free_stack(&stack_b);
 }

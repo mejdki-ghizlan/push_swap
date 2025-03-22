@@ -60,33 +60,38 @@ void	rra_bonus(t_node **stack_a);
 // is_valid_bonus
 t_node				*new_node(int num);
 void				add_back(t_node **lst, t_node *new);
-void				is_duplicate(t_node *node, t_node **stack);
-void				check_numbers(char **buff);
-void				is_valid(char **str, t_node **stack);
+int					is_duplicate(t_node *node, t_node **stack);
+int					check_numbers(char **buff);
+int					is_valid(char **str, t_node **stack);
 
 // main_push_swap_bonus
-void read_instractions(char *input, t_node **stack_a, t_node **stack_b);
-void is_OK(t_node **stack_a, t_node **stack_b);
-void checker(t_node **stack_a, t_node **stack_b);
+void				read_instractions(char *input, t_node **stack_a, t_node **stack_b);
+void				is_OK(t_node **stack_a, t_node **stack_b);
+void				checker(t_node **stack_a, t_node **stack_b);
 
 // utils_bonus
-int					ft_atoi(char *str);
+int					ft_atoi(char *str, int *check);
 void				error(void);
-int	list_size(t_node *list);
+int					list_size(t_node *list);
 void				is_sorted(t_node **stack);
-void ft_free_stack(t_node **stack);
+// void				ft_free_stack(t_node **stack);
 
 // utils_get_next_line
-int	ft_strlen(char *s);
-char	*ft_strdup(char *str);
-char	*ft_strjoin(char *s1, char *s2);
-int	ft_strcpy(char *s1, char *s2);
+int					ft_strlen(char *s);
+char				*ft_strdup(char *str);
+char				*ft_strjoin(char *s1, char *s2);
+int					ft_strcpy(char *s1, char *s2);
 
 // utils_push_swap_bonus
-int	count_word(char *str);
-void	helper_split(char **dst, char *str, int i);
-char	**ft_split(char *str);
-int ft_strcmp(char *s1, char *s2);
-void ft_free(char **str);
+int					count_word(char *str);
+void				helper_split(char **dst, char *str, int i, int *k);
+char				**ft_split(char *str);
+int					ft_strcmp(char *s1, char *s2);
+// void				ft_free(char **str);
+
+// free_functions
+void				ft_free_stack(t_node **stack);
+void          		free_exit(char ***av);
+void				ft_free(char **str);
 
 #endif

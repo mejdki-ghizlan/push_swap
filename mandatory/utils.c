@@ -14,7 +14,7 @@
 
 int	ft_atoi(char *str, int *check)
 {
-	int	i;
+	int		i;
 	long	s;
 	long	r;
 
@@ -42,7 +42,7 @@ int	ft_atoi(char *str, int *check)
 void	error(void)
 {
 	write(2, "Error\n", 6);
-	exit(1);
+	exit(2);
 }
 
 int	list_size(t_node *list)
@@ -69,7 +69,6 @@ void	is_sorted(t_node **stack)
 
 	flag = 0;
 	tmp = *stack;
-
 	while (tmp)
 	{
 		if (tmp->next && tmp->num > tmp->next->num)
