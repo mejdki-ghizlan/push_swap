@@ -6,7 +6,7 @@
 /*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 21:14:44 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/03/19 21:54:28 by gel-mejd         ###   ########.fr       */
+/*   Updated: 2025/03/21 10:21:11 by gel-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int count_word(char *str)
 	return (counter);
 }
 
-void helper_split(char **dst, char *str, int i)
+void helper_split(char **dst, char *str, int i, int *k)
 {
 	int len;
 	int j;
 	int c;
 
-	j = 0;
+	j = *k;
 	while (str[j] == ' ')
 		j++;
 	len = 0;
@@ -51,6 +51,7 @@ void helper_split(char **dst, char *str, int i)
 	}
 	dst[i][c] = '\0';
 	j += len;
+	*k = j;
 }
 
 char **ft_split(char *str)
@@ -58,6 +59,7 @@ char **ft_split(char *str)
 	char **dst;
 	int cw;
 	int i;
+	int j;
 
 	if (!str || *str == '\0')
 		return (NULL);
@@ -66,41 +68,23 @@ char **ft_split(char *str)
 	if (!dst)
 		return (NULL);
 	i = 0;
+	j = 0;
 	while (i < cw)
 	{
-		helper_split(dst, str, i);
+		helper_split(dst, str, i, &j);
 		i++;
 	}
 	dst[i] = NULL;
 	return (dst);
 }
 
-void ft_free_stack(t_node **stack)
-{
-	t_node *nxt;
-	
-	if (!stack || !*stack)
-		return ;
-	while(*stack)
-	{
-		nxt = (*stack)->next;
-		free(*stack);
-		*stack = nxt;
-	}
-}
-
-void leak(void)
-{
-	system("leaks push_swap");
-}
-
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	int k;
 	char **buff;
 	t_node *stack_a;
 	t_node *stack_b;
-	atexit(leak);
+	
 	stack_a = NULL;
 	stack_b = NULL;
 	if (ac >= 2)
@@ -110,7 +94,7 @@ int main(int ac, char **av)
 		{
 			buff = ft_split(av[k]);
 			if (!buff || !*buff)
-				error();	
+				error();
 			is_valid(buff, &stack_a);
 			k++;
 			ft_free(buff);

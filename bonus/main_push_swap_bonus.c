@@ -6,7 +6,7 @@
 /*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 01:25:12 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/03/20 06:06:26 by gel-mejd         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:58:45 by gel-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,6 @@ void checker(t_node **stack_a, t_node **stack_b)
 		input = get_next_line(1);	
 	}	
 	is_OK(stack_a, stack_b);
-	while (*stack_a)
-	{
-		printf("element: %d\n", (*stack_a)->num);
-		(*stack_a) = (*stack_a)->next;
-	}
-	while (*stack_b)
-	{
-		printf("element: %d\n", (*stack_b)->num);
-		(*stack_b) = (*stack_b)->next;
-	}
 }
 
 int	main(int ac, char **av)
@@ -101,13 +91,13 @@ int	main(int ac, char **av)
 		{
 			buff = ft_split(av[k]);
 			if (!buff || !*buff)
-			{
-				ft_free(buff);
 				error();
-			}
 			is_valid(buff, &stack_a);
 			k++;
+			ft_free(buff);
 		}
+		is_sorted(stack_a);
 		checker(&stack_a, &stack_b);
 	}
+	ft_free_stack(stack_a);
 }

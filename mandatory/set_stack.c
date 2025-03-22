@@ -6,7 +6,7 @@
 /*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:44:07 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/03/20 05:56:28 by gel-mejd         ###   ########.fr       */
+/*   Updated: 2025/03/21 10:25:58 by gel-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	indexing(t_node *stack)
 void	min_target(t_node *stack_a, t_node *node)   
 {
 	t_node	*tmp;
-	t_node	*small;                                           // ??????
+	t_node	*small;
 
 	tmp = stack_a;
 	small = stack_a;
@@ -46,7 +46,7 @@ void	min_target(t_node *stack_a, t_node *node)
 void	target(t_node *stack_a, t_node *stack_b)    
 {
 	t_node	*tmp_b;
-	t_node	*tmp_a;                                           // ??????
+	t_node	*tmp_a;
 
 	tmp_b = stack_b;
 	tmp_a = stack_a;
@@ -68,6 +68,7 @@ void	target(t_node *stack_a, t_node *stack_b)
 		tmp_b = tmp_b->next;
 	}
 }
+        
 
 void	position(t_node *stack)
 {

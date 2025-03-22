@@ -6,17 +6,17 @@
 /*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:34:17 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/03/19 21:55:52 by gel-mejd         ###   ########.fr       */
+/*   Updated: 2025/03/21 10:31:03 by gel-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(char *str, int *check)
 {
 	int	i;
-	int	s;
-	int	r;
+	long	s;
+	long	r;
 
 	r = 0;
 	s = 1;
@@ -32,28 +32,16 @@ int	ft_atoi(char *str)
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		r = r * 10 + (str[i] - 48);
+		if ((r * s) < -2147483648 || (r * s) > 2147483647)
+			*check = 1;
 		i++;
 	}
 	return (r * s);
 }
 
-void ft_free(char **str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
-
 void	error(void)
 {
-	write(1, "ERROR\n", 6);
+	write(2, "Error\n", 6);
 	exit(1);
 }
 
@@ -95,5 +83,5 @@ void	is_sorted(t_node **stack)
 	}
 	
 	if (flag == 0)
-		error();
+		exit(0);
 }

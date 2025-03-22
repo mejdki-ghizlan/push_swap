@@ -6,7 +6,7 @@
 /*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:41:11 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/03/17 00:00:08 by gel-mejd         ###   ########.fr       */
+/*   Updated: 2025/03/21 09:54:31 by gel-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,10 @@ void	check_1_0(t_node **stack_a, t_node **stack_b, t_node *small)
 {
 	if (!(*stack_b) || !(*stack_b)->target)
 		return ;
-	if (small->cost < small->target->cost)
-	{
-		while (small->cost--)
-		{
-			ft_rrb(stack_b);
-			small->target->cost--;
-		}
-		while (small->target->cost--)
-			ft_ra(stack_a);
-	}
-	else
-	{
-		while (small->target->cost--)
-		{
-			ft_ra(stack_a);
-			small->cost--;
-		}
-		while ((*stack_a)->cost--)
-			ft_rrb(stack_b);
-	}
+	while (small->cost--)
+		ft_rrb(stack_b);
+	while (small->target->cost--)
+		ft_ra(stack_a);
 }
 
 void	check_1_1(t_node **stack_a, t_node **stack_b, t_node *small)
@@ -110,24 +94,8 @@ void	check_0_1(t_node **stack_a, t_node **stack_b, t_node *small)
 {
 	if (!(*stack_b) || !(*stack_b)->target)
 		return ;
-	if (small->cost < small->target->cost)
-	{
-		while (small->cost--)
-		{
-			ft_rb(stack_b);
-			small->target->cost--;
-		}
-		while (small->target->cost--)
-			ft_rra(stack_a);
-	}
-	else
-	{
-		while (small->target->cost--)
-		{
-			ft_rra(stack_a);
-			small->cost--;
-		}
-		while (small->cost--)
-			ft_rb(stack_b);
-	}
+	while (small->cost--)
+		ft_rb(stack_b);
+	while (small->target->cost--)
+		ft_rra(stack_a);
 }

@@ -6,17 +6,17 @@
 /*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:34:17 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/03/20 06:10:47 by gel-mejd         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:52:11 by gel-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(char *str, int *check)
 {
 	int	i;
-	int	s;
-	int	r;
+	long	s;
+	long	r;
 
 	r = 0;
 	s = 1;
@@ -32,6 +32,8 @@ int	ft_atoi(char *str)
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		r = r * 10 + (str[i] - 48);
+		if ((r * s) < -2147483648 || (r * s) > 2147483647)
+			*check = 1;
 		i++;
 	}
 	return (r * s);
@@ -39,8 +41,8 @@ int	ft_atoi(char *str)
 
 void	error(void)
 {
-	write(1, "ERROR\n", 6);
-	exit(1);
+	write(2, "Error\n", 6);
+	exit(2);
 }
 
 int	list_size(t_node *list)
@@ -64,11 +66,10 @@ void	is_sorted(t_node **stack)
 {
 	t_node	*tmp;
 	int		flag;
+	t_node *head;
 
 	flag = 0;
 	tmp = *stack;
-	t_node *head;
-
 	head = tmp;
 	while (tmp)
 	{
@@ -79,12 +80,8 @@ void	is_sorted(t_node **stack)
 		}
 		tmp = tmp->next;
 	}
-	
 	if (flag == 0)
-	{
-		write(2, "ERROR\n", 6);
-		exit(1);
-	}
+		error();
 }
 
 void ft_free_stack(t_node **stack)

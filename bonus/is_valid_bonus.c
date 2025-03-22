@@ -6,7 +6,7 @@
 /*   By: gel-mejd <gel-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 20:08:08 by gel-mejd          #+#    #+#             */
-/*   Updated: 2025/03/20 06:13:17 by gel-mejd         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:13:06 by gel-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	add_back(t_node **lst, t_node *new)
 	}
 }
 
-void	is_duplicate(t_node *node, t_node **stack)
+int	is_duplicate(t_node *node, t_node **stack)
 {
 	t_node	*tmp;
 
@@ -48,12 +48,10 @@ void	is_duplicate(t_node *node, t_node **stack)
 	while (tmp)
 	{
 		if (node->num == tmp->num)
-		{
-			ft_free_stack(stack);
-			error();
-		}	
+			return (0);	
 		tmp = tmp->next;
 	}
+	return (1);
 }
 
 void	check_numbers(char **buff)
@@ -68,13 +66,13 @@ void	check_numbers(char **buff)
 		if (buff[i][j] && (buff[i][0] == '-' || buff[i][0] == '+'))
 		{
 			if (!buff[i][1])
-				error();
+				free_exit(buff);
 			j++;
 		}
 		while (buff[i] && buff[i][j])
 		{
 			if (!(buff[i][j] >= '0' && buff[i][j] <= '9'))
-				error();
+				free_exit(buff);
 			j++;
 		}
 		i++;
@@ -85,15 +83,21 @@ void	is_valid(char **str, t_node **stack)
 {
 	int		i;
 	int		num;
+	int		check;
 	t_node	*node;
 
 	i = 0;
+	check = 0;
 	check_numbers(str);
 	while (str[i])
 	{
-		num = ft_atoi(str[i]);
+		num = ft_atoi(str[i], &check);
 		node = new_node(num);
-		is_duplicate(node, stack);
+		if (is_duplicate(node, stack) == 0 || check == 1)
+		{
+			ft_free_stack(stack);
+			free_exit(str);
+		}
 		add_back(stack, node);
 		i++;
 	}
