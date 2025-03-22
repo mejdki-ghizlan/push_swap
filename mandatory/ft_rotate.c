@@ -15,13 +15,11 @@
 void	ft_rotate(t_node **stack)
 {
 	t_node	*head;
-	t_node	*tmp;
 	t_node	*last;
 
 	if (!*stack || !(*stack)->next)
 		return ;
 	head = *stack;
-	tmp = *stack;
 	*stack = (*stack)->next;
 	head->next = NULL;
 	last = *stack;

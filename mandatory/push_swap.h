@@ -61,8 +61,8 @@ void				ft_ss(t_node **stack_a, t_node **stack_b);
 t_node				*new_node(int num);
 void				add_back(t_node **lst, t_node *new);
 int					is_duplicate(t_node *node, t_node **stack);
-void				check_numbers(char **buff);
-void				is_valid(char **str, t_node **stack);
+int					check_numbers(char **buff);
+int					is_valid(char **str, t_node **stack);
 
 // main_push_swap
 char				**ft_split(char *str);
@@ -71,7 +71,7 @@ void 				helper_split(char **dst, char *str, int i, int *k);
 
 // free_functions
 void				ft_free_stack(t_node **stack);
-void          		free_exit(char **av);
+void          		free_exit(char ***av);
 void				ft_free(char **str);
 
 // set_stack

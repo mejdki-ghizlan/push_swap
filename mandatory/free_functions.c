@@ -12,32 +12,37 @@
 
 #include "push_swap.h"
 
-void          free_exit(char **av)
+void          free_exit(char ***av)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while (av[i])
+	if (!av || !(*av))
+		error();
+	while ((*av)[i])
 	{
-		free(av[i]);
+		free((*av)[i]);
 		i++;
 	}
-	free(av);
+	free(*av);
+	*av = NULL;
 	error();
 }
 
 void ft_free_stack(t_node **stack)
 {
-	t_node *nxt;
+
+	t_node	*tmp;
 
 	if (!stack || !*stack)
-		return;
+		return ;
 	while (*stack)
 	{
-		nxt = (*stack)->next;
+		tmp = (*stack)->next;
 		free(*stack);
-		*stack = nxt;
+		*stack = tmp;
 	}
+	*stack = NULL;
 }
 
 void ft_free(char **str)

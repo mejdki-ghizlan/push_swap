@@ -54,7 +54,7 @@ int		is_duplicate(t_node *node, t_node **stack)
 	return (1);
 }
 
-void	check_numbers(char **buff)
+int	check_numbers(char **buff)
 {
 	int	i;
 	int	j;
@@ -67,20 +67,21 @@ void	check_numbers(char **buff)
 		if (buff[i][j] && (buff[i][0] == '-' || buff[i][0] == '+'))
 		{
 			if (!buff[i][1])
-				free_exit(buff);
+				return (0);
 			j++;
 		}
 		while (buff[i] && buff[i][j])
 		{
 			if (!(buff[i][j] >= '0' && buff[i][j] <= '9'))
-				free_exit(buff);    
+				return (0);    
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
-void	is_valid(char **str, t_node **stack)
+int	is_valid(char **str, t_node **stack)
 {
 	int		i;
 	int		num;
@@ -89,17 +90,20 @@ void	is_valid(char **str, t_node **stack)
 
 	check = 0;
 	i = 0;
-	check_numbers(str);
+	if (!check_numbers(str))
+		return(0);
+
 	while (str[i])
 	{
 		num = ft_atoi(str[i], &check);
 		node = new_node(num);
 		if (is_duplicate(node, stack) == 0 || check == 1)
 		{
-			ft_free_stack(stack);
-			free_exit(str);
+			free(node);
+			return(0);
 		}
 		add_back(stack, node);
 		i++;
 	}
+	return(1);
 }

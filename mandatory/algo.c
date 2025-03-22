@@ -15,7 +15,6 @@
 void	push_all(t_node **stack_a, t_node **stack_b)
 {
 	int	lena;
-	int	lenb;
 
 	if (!stack_a || !*stack_a)
 		return ;
@@ -25,7 +24,6 @@ void	push_all(t_node **stack_a, t_node **stack_b)
 		ft_pb(stack_a, stack_b);
 		lena--;
 	}
-	lenb = list_size(*stack_b);
 }
 
 int	total_cost(t_node *node1)

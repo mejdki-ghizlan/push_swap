@@ -93,9 +93,11 @@ int	main(int ac, char **av)
 		while (av[k])
 		{
 			buff = ft_split(av[k]);
-			if (!buff || !*buff)
-				error();
-			is_valid(buff, &stack_a);
+			if (!buff || !*buff || !is_valid(buff, &stack_a))
+			{
+				ft_free_stack(&stack_a);
+				free_exit(&buff);
+			}
 			k++;
 			ft_free(buff);
 		}

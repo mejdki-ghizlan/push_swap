@@ -69,9 +69,7 @@ void	is_sorted(t_node **stack)
 
 	flag = 0;
 	tmp = *stack;
-	t_node *head;
 
-	head = tmp;
 	while (tmp)
 	{
 		if (tmp->next && tmp->num > tmp->next->num)
@@ -83,5 +81,8 @@ void	is_sorted(t_node **stack)
 	}
 	
 	if (flag == 0)
+	{
+		ft_free_stack(stack);
 		exit(0);
+	}
 }
